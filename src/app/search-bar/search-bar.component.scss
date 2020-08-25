@@ -1,0 +1,35 @@
+
+
+@keyframes move-toolbar-to-top {
+    0%   {background-color:#ffffff; height: 100vh;}
+    25%   {background-color:#baebf5; }
+    50%   {background-color:#91e2f2; }
+    75%   {background-color:#74ddf2; }
+    100% {background-color:#42d7f5; height: 10vh;}
+  }
+  
+  .toolbar-container{
+    height: 100vh; 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 1s;    
+}
+
+.toolbar-container-animation{
+    height: 10vh;
+    background-color:#42d7f5;
+    animation-name: move-toolbar-to-top;
+    animation-duration: 2s;
+}
+
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    padding: 5px;
+    height: max-content;
+
+}

@@ -1,0 +1,30 @@
+
+
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--input-color) !important;
+    background-color: white !important;
+    // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--input-color) !important;
+
+    background-color: white !important;
+}
+::ng-deep .mat-form-field-outline{
+    border-radius: 6px !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding: 0 !important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+    background-color: white !important;
+}
+
+
+

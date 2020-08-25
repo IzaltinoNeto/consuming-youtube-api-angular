@@ -1,0 +1,12 @@
+<div class="toolbar-container" [ngClass]="searched ? 'toolbar-container-animation' : ''">
+  <div class="toolbar">
+
+    <mat-form-field appearance="outline">
+      <input matInput type="text" placeholder="Pesquisar" [(ngModel)]="searchTerm">
+      <button mat-button matSuffix mat-icon-button aria-label="search" (click)="submit()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+</div>
