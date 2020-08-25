@@ -1,7 +1,7 @@
 <app-search-bar (search)="searchVideosByTerm($event)" ></app-search-bar>
 
-<div *ngIf="videos.length"
-     class="list" 
+<div (scroll)="onScroll($event)" *ngIf="videos.length"
+     class="list"
      >
     <div  *ngFor="let item of videos" class="card">
         <img [src]="item.snippet.thumbnails.high.url" />

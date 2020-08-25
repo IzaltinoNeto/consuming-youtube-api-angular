@@ -10,7 +10,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatToolbarModule, MatIconModule, MatButtonModule,  } from '@angular/material';
 import { ListVideosComponent } from './list-videos/list-videos.component';
 import { HttpClientModule } from '@angular/common/http';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
-    InfiniteScrollModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

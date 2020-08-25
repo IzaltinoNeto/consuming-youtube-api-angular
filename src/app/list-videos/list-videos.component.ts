@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubeApiService } from './youtube-api.service';
+import { PaginationService } from './pagination.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-videos',
@@ -8,23 +10,48 @@ import { YoutubeApiService } from './youtube-api.service';
 })
 export class ListVideosComponent implements OnInit {
   videos = [];
-
-  constructor(public youtubeApiService: YoutubeApiService) { }
+  private subscription: Subscription;
+  nextPage: any;
+  searchTerm: string = '';
+  constructor(public youtubeApiService: YoutubeApiService,
+              public paginationService: PaginationService,) { }
 
   ngOnInit() {
+    this.subscription = this.paginationService.notifyObservable$.subscribe( res => {
+   //   this.searchVideosByTermNextPage();
+      console.log('res: ', res);
+    });
   }
 
   searchVideosByTerm(term) {
     console.log('term: ', term)
-    
+    this.searchTerm = term;
     this.youtubeApiService.listVideosByTerm(term).subscribe(data => {
       console.log('videos: ',data);
       this.videos = data.items;
     });
   }
 
+ /*  searchVideosByTermNextPage() {
+    console.log('term: ', this.searchTerm);
 
-  onScroll() {
-    console.log('onScrrl chamado');
+    this.youtubeApiService.listVideosByTerm(this.searchTerm, this.nextPage).subscribe(data => {
+      console.log('videos: ',data);
+      this.videos = data.items;
+    });
+  } */
+
+
+
+  onScroll(event) {
+    const table = event.target;
+    if (table.scrollHeight - table.scrollTop === table.clientHeight) {
+      this.paginationService.notifyOther('paginated');
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
