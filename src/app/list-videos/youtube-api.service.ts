@@ -10,15 +10,26 @@ import { map } from 'rxjs/operators';
 export class YoutubeApiService {
 
   standardUrl = 'https://www.googleapis.com/youtube/v3/';
-  key= 'AIzaSyBX4tJS83vVmtqHnzKoEyiYBsgSJsf5EwM';
+  key= 'AIzaSyBx07D_SL_5QMNSsNRR9JiLXsC3xy4wPrM';
 
   constructor(public http: HttpClient) { }
 
   
 
-  public listVideosByTerm(searchTerm: string): Observable<any> {
-    const requestUrl = `${this.standardUrl}search?part=id%2Csnippet&q=${searchTerm}&key=${this.key}`;
+  public listVideosByTerm(searchTerm: string, nextPageToken: string = ''): Observable<any> {
+    const requestUrl = `${this.standardUrl}search?part=id%2Csnippet&type=video&q=${searchTerm}&key=${this.key}&maxResults=10&pageToken=${nextPageToken}`;
    
+    
+    return this.http.get(requestUrl)
+        .pipe(
+            map((res: any) => res)
+        );
+}
+
+  public getVideosDetailsById(id: string): Observable<any> {
+    const requestUrl = `${this.standardUrl}videos?id=${id}&part=snippet,statistics&key=${this.key}`;
+   
+    
     return this.http.get(requestUrl)
         .pipe(
             map((res: any) => res)

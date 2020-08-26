@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { YoutubeApiService } from './youtube-api.service';
 import { PaginationService } from './pagination.service';
 import { Subscription } from 'rxjs';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-videos',
@@ -11,15 +12,20 @@ import { Subscription } from 'rxjs';
 export class ListVideosComponent implements OnInit {
   videos = [];
   private subscription: Subscription;
-  nextPage: any;
+  nextPageToken: any;
   searchTerm: string = '';
   constructor(public youtubeApiService: YoutubeApiService,
-              public paginationService: PaginationService,) { }
+              public paginationService: PaginationService,
+              public route: Router) { }
 
   ngOnInit() {
+
     this.subscription = this.paginationService.notifyObservable$.subscribe( res => {
-   //   this.searchVideosByTermNextPage();
+      if(res) {
+        this.searchVideosByTermNextPage();
+      }
       console.log('res: ', res);
+
     });
   }
 
@@ -29,17 +35,19 @@ export class ListVideosComponent implements OnInit {
     this.youtubeApiService.listVideosByTerm(term).subscribe(data => {
       console.log('videos: ',data);
       this.videos = data.items;
+      this.nextPageToken = data.nextPageToken;
     });
   }
 
- /*  searchVideosByTermNextPage() {
+  searchVideosByTermNextPage() {
     console.log('term: ', this.searchTerm);
 
-    this.youtubeApiService.listVideosByTerm(this.searchTerm, this.nextPage).subscribe(data => {
+    this.youtubeApiService.listVideosByTerm(this.searchTerm, this.nextPageToken).subscribe(data => {
       console.log('videos: ',data);
-      this.videos = data.items;
+      this.videos.push(...data.items);
+      this.nextPageToken = data.nextPageToken;
     });
-  } */
+  }
 
 
 
@@ -49,6 +57,10 @@ export class ListVideosComponent implements OnInit {
       this.paginationService.notifyOther('paginated');
     }
 
+  }
+
+  showDetails(id) {
+    this.route.navigate(['video-details', id]);
   }
 
   ngOnDestroy(): void {

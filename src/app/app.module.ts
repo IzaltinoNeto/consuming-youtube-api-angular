@@ -10,12 +10,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatToolbarModule, MatIconModule, MatButtonModule,  } from '@angular/material';
 import { ListVideosComponent } from './list-videos/list-videos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
+import { VideoDetailsComponent } from './video-details/video-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
-    ListVideosComponent
+    ListVideosComponent,
+    VideoDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

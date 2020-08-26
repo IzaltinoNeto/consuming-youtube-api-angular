@@ -1,0 +1,41 @@
+<div class="toolbar1">
+    <button class="back-button" mat-button routerLink="/videos-list">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="title-container">
+        <span class="title"> {{videoDetails?.snippet.title}}</span>
+    </div>
+    
+</div>
+<div class="container">
+    <div class="video-details-container">
+        <div class="video">
+            <iframe width="100%" height="100%" [src]="videoUrl" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    
+        <div class="video-infos">
+            <span class="channel-name"> {{videoDetails?.snippet.channelTitle}}</span>
+    
+            <div class="like-dislike-group">
+                <div class="likes">
+                    <mat-icon>thumb_up</mat-icon> {{videoDetails?.statistics.likeCount}}
+                </div>
+                <div class="dislikes">
+                    <mat-icon>
+                        thumb_down
+                    </mat-icon>{{videoDetails?.statistics.dislikeCount}}
+                </div>
+            </div>
+        </div>
+    
+        <div class="description">
+            {{videoDetails?.snippet.description}}
+        </div>
+    
+        <div class="views">
+            <mat-icon>visibility</mat-icon> {{videoDetails?.statistics.viewCount}}
+        </div>
+    
+    </div>    
+</div>

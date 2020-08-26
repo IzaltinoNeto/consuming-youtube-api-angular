@@ -1,0 +1,103 @@
+.toolbar1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    width: 100vw;
+    height: 10vh;
+    background-color:#42d7f5;
+    color: white;
+}
+
+.title{
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 20px;
+    height: 20px;
+    max-height: 20px;
+    align-self: center;
+    font-weight: 500;
+}
+
+.title-container{
+    width: 80vw;
+    display: flex;
+}
+.video-details-container{
+    padding: 3vw;
+}
+
+
+.video-details-container > * {
+    margin: 6px 0;
+}
+
+
+.video{
+    width: 100%;
+    height: 300px;
+}
+
+.video-infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+
+}
+
+.views{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+
+}
+
+.likes , .dislikes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+
+}
+
+.description{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.like-dislike-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .video-details-container{
+        padding: unset;
+        width:  84vw;
+        align-self: center;
+    }
+    .video {
+        width:  84vw;
+        height: 50vw;
+    }
+    .back-button{
+        width: 8vw;
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

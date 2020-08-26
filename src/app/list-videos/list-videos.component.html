@@ -5,9 +5,9 @@
      >
     <div  *ngFor="let item of videos" class="card">
         <img [src]="item.snippet.thumbnails.high.url" />
-        <div class="title">{{item.snippet.title}}</div>
+        <div class="title">{{item.snippet.title+''}}</div>
         <div class="channel-name">{{item.snippet.channelTitle}}</div>
-        <div class="description">{{item.snippet.description}}</div>
-        <Button>Detalhes</Button>
+        <p class="description">{{item.snippet.description}}</p>
+        <button class="detail-button" mat-button (click)="showDetails(item.id.videoId)">Detalhes</button>
     </div>
 </div>
