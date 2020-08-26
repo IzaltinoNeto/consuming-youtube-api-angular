@@ -11,3 +11,6 @@
         <button class="detail-button" mat-button (click)="showDetails(item.id.videoId)">Detalhes</button>
     </div>
 </div>
+<div class="no-result" *ngIf="!videos.length && !loading">
+    Nenhum resultado encontrado. Pesquise novamente com uma palavra chave diferente.
+</div>

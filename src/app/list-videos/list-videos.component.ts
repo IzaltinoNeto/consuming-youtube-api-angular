@@ -14,6 +14,7 @@ export class ListVideosComponent implements OnInit {
   private subscription: Subscription;
   nextPageToken: any;
   searchTerm: string = '';
+  loading: boolean;
   constructor(public youtubeApiService: YoutubeApiService,
               public paginationService: PaginationService,
               public route: Router) { }
@@ -30,9 +31,11 @@ export class ListVideosComponent implements OnInit {
   }
 
   searchVideosByTerm(term) {
+    this.loading = true;
     console.log('term: ', term)
     this.searchTerm = term;
     this.youtubeApiService.listVideosByTerm(term).subscribe(data => {
+      this.loading = false;
       console.log('videos: ',data);
       this.videos = data.items;
       this.nextPageToken = data.nextPageToken;
